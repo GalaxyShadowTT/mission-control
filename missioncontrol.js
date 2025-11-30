@@ -31,9 +31,13 @@ function zaladujSprzet(misja, sprzet) {
 
 
 function przemierzDystans(misja, odleglosc) {
-    misja.dystans = odleglosc;
+    misja.dystans += odleglosc;
 
-    misja.storage.zapasy = odleglosc * 10;
+    misja.storage.zapasy -= odleglosc * 10;
+
+    if (misja.storage.zapasy = 0) {
+        misja.storage.zapasy = 0;
+    }
 }
 
 
@@ -44,26 +48,63 @@ przemierzDystans(misja, 6);
 przemierzDystans(misja, 12);
 
 
+
 function raportMisji(misja) {
-    console.log("misja report: ")
+    console.log(`Raport misji: ${misja.nazwa}`);
     console.log("")
-    console.log("misja: "+misja.nazwa);
+    
+    console.log(`typ misjiL ${misja.typ}`);
     console.log("")
-    console.log("misja typ: "+misja.typ);
+
+    console.log(`Dystans przebyty: ${misja.dystans}`);
     console.log("")
+
+    console.log(`Ile zapasow pozostalo: %{misja.storage.zapasy}`);
+
+    
     console.log("Members of the crew: ");
     misja.zaloga.map((czlonek)=> console.log(czlonek));
     console.log("")
+
     console.log("Badawcze cele: ");
     misja.badawczeCele.map((task)=> console.log(task));
     console.log("")
+
+
     console.log("storage: ")
     console.log("narzedzia: ");
     misja.storage.narzedzia.map((narzedzia)=> console.log(narzedzia));
     console.log("")
-    console.log("Zapasów ile zostało: "+misja.storage.zapasy);
+
 
 }
+
+// function raportMisji(misja) {
+//     console.log("misja report: ")
+//     console.log("")
+
+//     console.log("misja: "+misja.nazwa);
+//     console.log("")
+
+//     console.log("misja typ: "+misja.typ);
+//     console.log("")
+
+//     console.log("Members of the crew: ");
+//     misja.zaloga.map((czlonek)=> console.log(czlonek));
+//     console.log("")
+
+//     console.log("Badawcze cele: ");
+//     misja.badawczeCele.map((task)=> console.log(task));
+//     console.log("")
+
+//     console.log("storage: ")
+//     console.log("narzedzia: ");
+//     misja.storage.narzedzia.map((narzedzia)=> console.log(narzedzia));
+//     console.log("")
+
+//     console.log("Zapasów ile zostało: "+misja.storage.zapasy);
+
+// }
 
 
 raportMisji(misja)
